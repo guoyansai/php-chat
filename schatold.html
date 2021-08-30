@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSocket</title>
+
+</head>
+
+<body>
+	
+	<div onpaste="log('paste')"><div>yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</div>
+	<div oncopy="log('copy')">
+		test,test,test,test,test,test,test,test,test,test,test,
+	</div>
+	</div>
+	
+    <h1> 聊天室 </h1>
+    <div id="content" name="name" style="overflow-y: scroll; width: 400px; height: 300px; border: solid 1px #000"></div>
+    <br />
+    <div>
+        <input type="text" id="msg" style="width: 200px;">
+    </div>
+    <button id="submit">提交</button>
+    <script>
+		function log(str){
+			console.log(666.111,event,str)
+		}
+        /* 
+  连接服务器
+
+*/
+        const wsPort = 8018
+        const hostname = '127.0.0.1'
+        const ws = new WebSocket(`ws://${hostname}:${wsPort}/55`)
+
+        ws.onopen = () => {
+            // 进入聊天室的提示
+            ws.send('{m:"阿赛",c:"欢迎xxx来到xxx的直播间"}')
+        }
+
+        // 接收数据，然后将数据展示到界面上
+        ws.onmessage = (msg) => {
+			console.log(666.111,msg.data)
+            const content = document.querySelector('#content')
+            content.innerHTML += msg.data + '<br/>'
+        }
+
+        // 异常报出
+
+        // ws.onerror = ( 'error' ) => {
+        //   console.log( error )
+        // }
+
+
+        ws.onclose = () => {
+            console.log('closed')
+        }
+
+        document.querySelector('#submit').addEventListener('click', function () {
+            var msg2 = '{m:"asai",c:'+msg.value+'}'
+            ws.send(msg2)
+            msg.value = ''
+        }, false)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "asaichat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {    
+    "dev": "node server.js",
+    "devold": "node serverold.js"
+  },
+  "author": "asai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.0",
+    "ws": "^7.0.0"
+  }
+}
