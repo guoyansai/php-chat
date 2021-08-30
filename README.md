@@ -1,5 +1,5 @@
 # asaichat
-### 演示网址：http://lt.780.pub/
+### 演示网址：http://chat.asai.cc/
 - 源代码模型：html5+css+vue+axios+JavaScript+PHP+txt+json
 - 功能介绍：
 1. localstore本地缓存；
